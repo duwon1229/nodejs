@@ -3,12 +3,14 @@ const app = express();
 const fs = require("fs");
 var bodyParser = require("body-parser");
 var compression = require("compression");
+var helmet = require("helmet");
 var topciRouter = require("./routes/topic");
 var indexRouter = require("./routes/index");
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(compression());
+app.use(helmet());
 // get 방식만 적용
 app.get("/{*any}", function (request, response, next) {
   console.log("first middleware");
